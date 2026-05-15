@@ -6,14 +6,14 @@ function App() {
   /*Sección de Variables de estado*/
   const [characters, setCharacters] = useState([]);
   const [searchName, setSearchName] = useState('');
+  const [selectedHouse, setSelectedHouse] = useState('gryffindor');
 
   /*Sección de useEffect*/
   useEffect(() => {
-    fetch('https://hp-api.onrender.com/api/characters/house/gryffindor')
+    console.log('Ejecutando el useEffect con la casa:', selectedHouse);
+    fetch(`https://hp-api.onrender.com/api/characters/house/${selectedHouse}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log('Datos originales de la API:', data);
-
         const cleanData = data.map((character) => {
           return {
             id: character.id,
@@ -24,16 +24,9 @@ function App() {
               'https://placehold.co/210x295/ffffff/666666/?format=svg&text=Harry+Potter',
           };
         });
-
-        console.log('Datos limpios:', cleanData);
-
         setCharacters(cleanData);
       });
-  }, []);
-
-  useEffect(() => {
-    console.log('Estado de characters actualizado:', characters);
-  }, [characters]);
+  }, [selectedHouse]);
 
   /*Sección de funciones de eventos*/
   const handleSearchName = (ev) => {
@@ -44,11 +37,16 @@ function App() {
     ev.preventDefault();
   };
 
-  /*Sección de funciones helper para pintar el HTML*/
+  const handleSelectedHouse = (ev) => {
+    setSelectedHouse(ev.target.value);
+  };
 
+  /*Sección de funciones helper para pintar el HTML*/
   const filteredCharacters = characters.filter((character) =>
     character.name.toLowerCase().includes(searchName.toLowerCase()),
   );
+
+  console.log('Personajes filtrados por nombre:', filteredCharacters);
 
   return (
     <div className="page">
@@ -71,10 +69,27 @@ function App() {
             onInput={handleSearchName}
             placeholder="Ej: Hagrid"
           />
+
+          <label className="filters__label" htmlFor="selectedHouse">
+            Selecciona la casa:
+          </label>
+
+          <select
+            className="filters__select"
+            name="selectedHouse"
+            id="selectedHouse"
+            value={selectedHouse}
+            onInput={handleSelectedHouse}
+          >
+            <option value="gryffindor">Gryffindor</option>
+            <option value="slytherin">Slytherin</option>
+            <option value="ravenclaw">Ravenclaw</option>
+            <option value="hufflepuff">Hufflepuff</option>
+          </select>
         </form>
 
         <section className="characters">
-          <h2 className="characters__title">Personajes de Gryffindor</h2>
+          <h2 className="characters__title">Personajes de {selectedHouse}</h2>
 
           {filteredCharacters.length === 0 ? (
             <p className="characters__message">
