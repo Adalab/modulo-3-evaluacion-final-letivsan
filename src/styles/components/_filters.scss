@@ -1,0 +1,19 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  width: min(100%, 28rem);
+  margin: 0 auto var(--space-l);
+}
+
+.filters__label {
+  font-weight: 700;
+}
+
+.filters__input {
+  padding: var(--space-s);
+  border: 1px solid var(--color-primary);
+  border-radius: 0.4rem;
+  font-family: var(--font-main);
+  font-size: 1rem;
+}

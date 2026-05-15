@@ -1,15 +1,14 @@
 .card {
+  width: 210px;
   background-color: var(--color-card);
-  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.card__image {
+.card__img {
   width: 210px;
   height: 295px;
+  display: block;
   object-fit: cover;
-  object-position: top;
 }
 
 .card__info {
@@ -18,4 +17,9 @@
 
 .card__name {
   margin-bottom: var(--space-s);
+  font-size: 1rem;
+}
+
+.card__species {
+  font-size: 0.9rem;
 }

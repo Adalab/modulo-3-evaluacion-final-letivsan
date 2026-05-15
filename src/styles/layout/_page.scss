@@ -2,6 +2,12 @@
   padding: var(--space-m);
 }
 
+.characters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
 .characters__title {
   margin-bottom: var(--space-m);
   text-align: center;
@@ -12,4 +18,8 @@
   grid-template-columns: repeat(auto-fit, 210px);
   justify-content: center;
   gap: var(--space-m);
+}
+
+.characters__message {
+  text-align: center;
 }
