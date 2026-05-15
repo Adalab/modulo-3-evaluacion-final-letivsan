@@ -1,0 +1,14 @@
+.main {
+  padding: var(--space-m);
+}
+
+.characters__title {
+  margin-bottom: var(--space-m);
+  text-align: center;
+}
+
+.characters__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-m);
+}

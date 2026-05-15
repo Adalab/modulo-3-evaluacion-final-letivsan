@@ -1,10 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@use './styles/core/variables';
+@use './styles/core/reset';
 
-body {
-  background-color: darkcyan;
-  color: white;
-}
+@use './styles/layout/header';
+@use './styles/layout/page';
+
+@use './styles/components/card';
